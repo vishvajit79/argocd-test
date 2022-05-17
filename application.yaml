@@ -1,8 +1,9 @@
-apiVersion: argoproj.io/v1alpha1
+apiVersion: argoproj.io/v1aalpha1
 kind: Application
 metadata:
-  name: mk-argo-application
+  name: mk-argo-app
   namespace: argocd
+
 spec:
   project: default
 
@@ -10,11 +11,9 @@ spec:
     repoURL: https://gitlab.com/djuturum/argocd-app-config.git
     targetRevision: HEAD
     path: dev
-  
   destination:
     server: https://kubernetes.default.svc
-    namespace: myapp
-
+    namespace: mkapp
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
@@ -22,3 +21,4 @@ spec:
     automated:
       selfHeal: true
       prune: true
+
