@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://gitlab.com/richard.brockc/argocd-app-config
+    repoURL: https://gitlab.com/richard.brockc/argocd-app-config.git
     targetRevision: HEAD
     path: dev
   destination: 
