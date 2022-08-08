@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mockserver
+spec:
+  destination:
+    name: ''
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: mockserver
+    repoURL: 'git@gitlab.com:richard.brockc/argocd-app-config.git'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated: null

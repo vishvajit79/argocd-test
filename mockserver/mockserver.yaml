@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mockserver
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: systest-mocks.niflheim.activeiq.io
+  labels:
+    run: mockserver
+spec:
+  type: NodePort
+  ports:
+  - port: 1080
+    name: webui
+    nodePort: 30916
+  selector:
+    app: mockserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mockserver
+    type: application
+  name: mockserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mockserver
+  template:
+    metadata:
+      labels:
+        app: mockserver
+    spec:
+      imagePullSecrets:
+      - name: awsecr-cred
+      containers:
+      - name: mockserver
+        image: jamesdbloom/mockserver:mockserver-5.9.0
+        env:
+        - name: MOCKSERVER_LIVENESS_HTTP_GET_PATH
+          value: /healthprobe
