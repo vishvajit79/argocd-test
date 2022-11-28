@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mkapp-service
-  apl: toito
+  apl: toitotakoitako
 spec:
   selector:
     app: mkapp
