@@ -1,4 +1,4 @@
-#### Commands
+#### Commands to run the application####
 
 ```bash
 # install ArgoCD in k8s
